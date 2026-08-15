@@ -36,6 +36,6 @@ public class QaTest {
         $("#p-lang-btn-checkbox").click();
         $x("//input[@role='combobox']").setValue("Русский");
         $$("#v-0-option-0").first().click();
-        $("#mwBQ").shouldBe(text("Selenium WebDriver"));
+        $("#mwBA").shouldHave(text("Selenium WebDriver — инструмент для автоматизации действий веб-браузера."));
     }
 }

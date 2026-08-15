@@ -13,7 +13,6 @@ public class QaTest {
     public void newTest() {
         Configuration.holdBrowserOpen = true;
         Configuration.timeout = 100000;
-        Configuration.browser = "chrome";
 
         open("https://ya.ru/");
         $("#text").setValue("bulgakov qa");

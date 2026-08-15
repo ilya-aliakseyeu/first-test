@@ -11,7 +11,6 @@ public class QaTest {
 
     @Test
     public void newTest() {
-        Configuration.holdBrowserOpen = true;
         Configuration.timeout = 100000;
 
         open("https://ya.ru/");

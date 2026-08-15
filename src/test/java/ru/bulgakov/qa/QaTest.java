@@ -21,7 +21,7 @@ public class QaTest {
         switchTo().window(1);
 
         $$(".t-menu__list li").last().click();
-        $x("//a[@class='tn-atom'and@href='#zeropopup']").click();
+        $x("//a[@class='tn-atom' and @href='#zeropopup']").click();
         $(byText("Бегу оплачивать")).click();
         switchTo().window(2);
         $("span.ant-select-selection-wrap").click();

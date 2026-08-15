@@ -22,5 +22,4 @@ public class WikiPage {
         infoElement.shouldHave(text(infoText));
         return this;
     }
-
 }

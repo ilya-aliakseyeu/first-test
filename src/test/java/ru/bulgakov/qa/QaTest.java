@@ -36,7 +36,7 @@ public class QaTest {
         $("#searchInput").setValue("Selenium (software)");
         $("[type=submit]").click();
         $("#p-lang-btn-checkbox").click();
-        $x("/html/body/div[8]/div/div[1]/div[1]/div/div/div/input").setValue("Русский");
+        $x("//input[@role='combobox']").setValue("Русский");
         $$("#v-0-option-0").first().click();
         $("#mwBQ").shouldBe(text("Selenium WebDriver"));
     }

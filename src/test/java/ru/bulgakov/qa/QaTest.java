@@ -30,6 +30,14 @@ public class QaTest {
 
     @Test
     public void secondTest() {
+        /*
+        1. Открываем вики
+        2. Ищем в поиске страницу про Селениум
+        3. Подтверждаем поиск
+        4. Меняем язык на русский
+        5. Проверяем на странице наличие фразы: "Selenium WebDriver — инструмент для автоматизации действий веб-браузера."
+         */
+
         open("https://www.wikipedia.org/");
         $("#searchInput").setValue("Selenium (software)");
         $("[type=submit]").click();

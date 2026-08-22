@@ -1,4 +1,4 @@
-package ru.bulgakov.pages.first;
+package ru.bulgakov.mentor.pages.first;
 
 import static com.codeborne.selenide.Condition.text;
 import static com.codeborne.selenide.Selectors.byText;

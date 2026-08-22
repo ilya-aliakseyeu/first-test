@@ -13,6 +13,7 @@ dependencies {
     testImplementation("org.junit.jupiter:junit-jupiter:5.11.4")
     testImplementation("com.codeborne:selenide:7.17.0")
     testRuntimeOnly ("org.junit.platform:junit-platform-launcher")
+    testImplementation("net.datafaker:datafaker:2.7.0")
 }
 
 tasks.test {

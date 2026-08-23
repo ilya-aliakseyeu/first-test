@@ -3,6 +3,7 @@ package webshop.pages;
 
 import com.codeborne.selenide.ElementsCollection;
 import com.codeborne.selenide.SelenideElement;
+import io.qameta.allure.Step;
 import net.datafaker.Faker;
 
 import static com.codeborne.selenide.Condition.visible;
@@ -22,7 +23,7 @@ public class ItemPage extends BasePage {
   public static String expectedUnitPrice;
   public static String itemQty;
 
-
+  @Step("Установить количество товара")
   public ItemPage setRandomItemQty() {
     itemQty = String.valueOf(faker.number().numberBetween(1, 10));
     expectedName = getItemName();
@@ -31,11 +32,13 @@ public class ItemPage extends BasePage {
     return this;
   }
 
+  @Step("Нажать на кнопку 'добавить в корзину'")
   public ItemPage clickAddToCart() {
     addToCartButton.click();
     return this;
   }
 
+  @Step("Выбрать процессор")
   public ItemPage setProcessor(int index) {
     processorsBox.get(index).click();
       if (index == 1) {
@@ -46,6 +49,7 @@ public class ItemPage extends BasePage {
     return this;
   }
 
+  @Step("Проверить отображение бара с уведомлением")
   public ItemPage checkNotificationBar() {
     notificationBar.shouldBe(visible);
     return this;

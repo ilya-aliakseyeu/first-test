@@ -11,11 +11,13 @@ public class WikiMainPage extends BasePage {
 
     public WikiMainPage searchInput(String text) {
         searchInputField.setValue(text);
+
         return this;
     }
 
     public WikiArticlePage clickSearchButton() {
         searchButton.click();
+
         return new WikiArticlePage();
     }
 }

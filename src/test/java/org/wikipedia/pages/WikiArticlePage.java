@@ -12,11 +12,13 @@ public class WikiArticlePage extends BasePage {
 
     public WikiArticlePage checkTitleContent(String expectedTitle) {
         title.shouldHave(text(expectedTitle));
+
         return this;
     }
 
     public WikiArticlePage checkArticleContent(String expectedArticle) {
         articleContent.shouldHave(text(expectedArticle));
+
         return this;
     }
 }

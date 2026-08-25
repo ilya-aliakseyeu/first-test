@@ -14,11 +14,13 @@ public class PaymentPage extends BasePage {
     public PaymentPage selectCurrency(String currency) {
         currencyDropdown.click();
         $(byText(currency)).click();
+
         return this;
     }
 
     public PaymentPage checkPrice(String price) {
         priceAmount.shouldHave(text(price));
+
         return this;
     }
 }

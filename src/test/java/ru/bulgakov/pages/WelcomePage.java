@@ -14,11 +14,13 @@ public class WelcomePage extends BasePage {
     public WelcomePage clickWantToBeQaButton() {
         costButton.click();
         wantToBeQaButton.click();
+
         return this;
     }
 
     public PaymentPage clickRunToPayButton() {
         runToPayButton.click();
+
         return new PaymentPage();
     }
 }

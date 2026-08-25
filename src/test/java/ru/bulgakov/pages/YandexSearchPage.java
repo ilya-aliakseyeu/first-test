@@ -11,6 +11,7 @@ public class YandexSearchPage extends BasePage {
     public YandexSearchResultsPage openStudySection(String textValue) {
         textInput.setValue(textValue);
         submitButton.click();
+
         return new YandexSearchResultsPage();
     }
 }

@@ -2,30 +2,43 @@ package second_sprint.webshop.pages;
 
 import com.codeborne.selenide.ElementsCollection;
 import com.codeborne.selenide.SelenideElement;
-import net.datafaker.Faker;
 
+import static com.codeborne.selenide.Condition.cssClass;
+import static com.codeborne.selenide.Condition.text;
 import static com.codeborne.selenide.Condition.visible;
 import static com.codeborne.selenide.Selenide.$;
 
+/**
+ * Карточка товара. Никакого состояния: пейдж кликает, вводит и отдает то,
+ * что показано на экране. Ожидания и расчеты - забота теста.
+ */
 public class ItemPage extends BasePage {
-  private final Faker faker = new Faker();
+  private final SelenideElement itemName = $("div.product-name h1");
+  private final SelenideElement itemPrice = $("div.product-price span");
+  private final SelenideElement qtyField = $("input.qty-input");
+  private final SelenideElement addToCartButton = $("input.add-to-cart-button");
+  private final SelenideElement attributes = $("div.attributes");
+  private final SelenideElement barNotification = $("div#bar-notification");
 
-  private final static SelenideElement qtyField = $("input#addtocart_72_EnteredQuantity");
-  private final static SelenideElement itemName = $("h1");
-  private final static SelenideElement itemPrice = $(".price-value-72");
-  private final static SelenideElement addToCartButton = $("#add-to-cart-button-72");
-  private final static ElementsCollection processorsBox = $("ul.option-list").$$("li input");
-  private final static SelenideElement notificationBar = $("div#bar-notification");
+  /** Выбор по видимому названию и в границах нужной группы атрибутов, а не по индексу. */
+  public ItemPage selectProcessor(String processor) {
+    attributeOptions("Processor")
+        .findBy(text(processor))
+        .$("input")
+        .click();
 
-  private String expectedName;
-  private String expectedUnitPrice;
-  private String itemQty;
+    return this;
+  }
 
-  public ItemPage setRandomItemQty() {
-    itemQty = String.valueOf(faker.number().numberBetween(1, 10));
-    expectedName = getItemName();
-    expectedUnitPrice = getItemPrice();
-    qtyField.setValue(itemQty);
+  private ElementsCollection attributeOptions(String groupTitle) {
+    return attributes.$$("dl dt")
+        .findBy(text(groupTitle))
+        .sibling(0)     // dt -> соответствующий dd
+        .$$("li");
+  }
+
+  public ItemPage setQuantity(String quantity) {
+    qtyField.setValue(quantity);
 
     return this;
   }
@@ -36,27 +49,13 @@ public class ItemPage extends BasePage {
     return this;
   }
 
-  public ItemPage setProcessor(int index) {
-    processorsBox.get(index).click();
-    if (index == 1) {
-      expectedUnitPrice = String.valueOf(Double.parseDouble(expectedUnitPrice) + 15.0);
-    } else if (index == 2) {
-      expectedUnitPrice = String.valueOf(Double.parseDouble(expectedUnitPrice) + 100.0);
-    }
+  /** Плашка одна на успех и на ошибку, поэтому проверяем класс и текст, а не только видимость. */
+  public ItemPage checkAddedToCartNotification() {
+    barNotification.shouldBe(visible)
+        .shouldHave(cssClass("success"))
+        .shouldHave(text("The product has been added to your shopping cart"));
 
     return this;
-  }
-
-  public ItemPage checkNotificationBar() {
-    notificationBar.shouldBe(visible);
-
-    return this;
-  }
-
-  public ShoppingCartPage clickShoppingCartButton() {
-    shoppingCartButton.click();
-
-    return new ShoppingCartPage(new ItemData(expectedName, expectedUnitPrice, itemQty));
   }
 
   public String getItemName() {

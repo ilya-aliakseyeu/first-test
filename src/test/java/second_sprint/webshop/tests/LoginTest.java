@@ -1,37 +1,33 @@
 package second_sprint.webshop.tests;
 
-import net.datafaker.Faker;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import second_sprint.webshop.pages.RegistrationPage;
 import second_sprint.webshop.pages.WsWelcomePage;
+import second_sprint.webshop.steps.AuthStep;
 
-import static com.codeborne.selenide.Selenide.*;
+import static com.codeborne.selenide.Selenide.clearBrowserCookies;
+import static com.codeborne.selenide.Selenide.localStorage;
+import static com.codeborne.selenide.Selenide.open;
 
-public class LoginTest {
-  private static final Faker faker = new Faker();
-  String firstName = faker.name().firstName();
-  String lastName = faker.name().lastName();
-  String email = faker.internet().emailAddress();
-  String password = faker.harryPotter().character() + faker.number().numberBetween(5, 10);
+public class LoginTest extends BaseTest {
+
+  private final AuthStep authStep = new AuthStep();
 
   @BeforeEach
   void setUp() {
-    open(WebShopConfig.REGISTRATION_URL, RegistrationPage.class)
-            .registration(firstName, lastName, email, password)
-                .emailShown(email);
+    authStep.register();
     clearBrowserCookies();
-    clearBrowserLocalStorage();
+    localStorage().clear();
   }
 
   @Test
-  public void successLoginTest() {
+  void successLoginTest() {
     open(WebShopConfig.BASE_URL, WsWelcomePage.class)
         .loginButtonClick()
-        .inputEmail(email)
-        .inputPassword(password)
+        .inputEmail(authStep.getEmail())
+        .inputPassword(authStep.getPassword())
         .clickRememberMe()
         .clickLogInButton()
-        .emailShown(email);
+        .emailShown(authStep.getEmail());
   }
 }

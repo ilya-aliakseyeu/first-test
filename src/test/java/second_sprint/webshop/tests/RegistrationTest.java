@@ -4,15 +4,15 @@ import net.datafaker.Faker;
 import org.junit.jupiter.api.Test;
 import second_sprint.webshop.pages.WsWelcomePage;
 
-import static com.codeborne.selenide.Selenide.*;
+import static com.codeborne.selenide.Selenide.open;
 
-public class RegistrationTest {
+public class RegistrationTest extends BaseTest {
   private static final Faker faker = new Faker();
 
   @Test
-  public void registrationTest() {
+  void registrationTest() {
     String email = faker.internet().emailAddress();
-    String password = faker.harryPotter().character() + faker.number().numberBetween(5, 10);
+    String password = faker.harryPotter().character() + faker.number().digits(5);
 
     open(WebShopConfig.BASE_URL, WsWelcomePage.class)
         .registerButtonClick()

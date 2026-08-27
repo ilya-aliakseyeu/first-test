@@ -6,7 +6,7 @@ import static com.codeborne.selenide.Condition.text;
 import static com.codeborne.selenide.Selenide.$;
 
 public class ConfirmRegistrationPage extends BasePage {
-  private static final SelenideElement confirmText = $(".result");
+  private final SelenideElement confirmText = $(".result");
 
   public ConfirmRegistrationPage confirmRegistrationText() {
     confirmText.shouldHave(text("Your registration completed"));

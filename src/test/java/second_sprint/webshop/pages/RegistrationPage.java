@@ -5,12 +5,12 @@ import com.codeborne.selenide.SelenideElement;
 import static com.codeborne.selenide.Selenide.$;
 
 public class RegistrationPage extends BasePage {
-    private static final SelenideElement genderRadioButton = $("#gender-male");
-    private static final SelenideElement firstNameField = $("#FirstName");
-    private static final SelenideElement lastNameField = $("#LastName");
-    private static final SelenideElement emailField = $("#Email");
-    private static final SelenideElement passwordField = $("#Password");
-    private static final SelenideElement confirmPasswordField = $("#ConfirmPassword");
+    private final SelenideElement genderRadioButton = $("#gender-male");
+    private final SelenideElement firstNameField = $("#FirstName");
+    private final SelenideElement lastNameField = $("#LastName");
+    private final SelenideElement emailField = $("#Email");
+    private final SelenideElement passwordField = $("#Password");
+    private final SelenideElement confirmPasswordField = $("#ConfirmPassword");
 
     public ConfirmRegistrationPage registration(String firstName, String lastName, String email, String password) {
         chooseMaleGender()

@@ -9,11 +9,11 @@ import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.$$;
 
 public class BasePage {
-  private static final SelenideElement registerButton = $(".ico-register");
-  private static final ElementsCollection headerElements = $$("div.header-links ul li a");
-  private static final SelenideElement computerTab = $$("ul.top-menu li a").get(1);
-  private static final SelenideElement desktopButton = $(byText("Desktops"));
-  protected static final SelenideElement shoppingCartButton = $("span.cart-label");
+  private final SelenideElement registerButton = $(".ico-register");
+  private final ElementsCollection headerElements = $$("div.header-links ul li a");
+  private final SelenideElement computerTab = $$("ul.top-menu li a").get(1);
+  private final SelenideElement desktopButton = $(byText("Desktops"));
+  private final SelenideElement cartLink = $("a.ico-cart");
 
   public RegistrationPage registerButtonClick() {
     registerButton.click();
@@ -38,4 +38,11 @@ public class BasePage {
 
     return new DesktopsPage();
   }
+
+  public ShoppingCartPage openCart() {
+    cartLink.click();
+
+    return new ShoppingCartPage();
+  }
+
 }

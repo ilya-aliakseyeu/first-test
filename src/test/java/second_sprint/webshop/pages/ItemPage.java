@@ -2,30 +2,21 @@ package second_sprint.webshop.pages;
 
 import com.codeborne.selenide.ElementsCollection;
 import com.codeborne.selenide.SelenideElement;
-import net.datafaker.Faker;
 
-import static com.codeborne.selenide.Condition.visible;
+import static com.codeborne.selenide.Condition.*;
 import static com.codeborne.selenide.Selenide.$;
 
 public class ItemPage extends BasePage {
-  private final Faker faker = new Faker();
 
-  private final static SelenideElement qtyField = $("input#addtocart_72_EnteredQuantity");
-  private final static SelenideElement itemName = $("h1");
-  private final static SelenideElement itemPrice = $(".price-value-72");
-  private final static SelenideElement addToCartButton = $("#add-to-cart-button-72");
-  private final static ElementsCollection processorsBox = $("ul.option-list").$$("li input");
-  private final static SelenideElement notificationBar = $("div#bar-notification");
+  private final SelenideElement itemPrice = $("span[itemprop='price']");
+  private final SelenideElement qtyField = $("input.qty-input");
+  private final SelenideElement addToCartButton = $("input.add-to-cart-button");
+  private final SelenideElement attributes = $("div.attributes");
+  private final SelenideElement successBar = $("div#bar-notification.success");
+  private final SelenideElement cartQty = $("span.cart-qty");
 
-  private String expectedName;
-  private String expectedUnitPrice;
-  private String itemQty;
-
-  public ItemPage setRandomItemQty() {
-    itemQty = String.valueOf(faker.number().numberBetween(1, 10));
-    expectedName = getItemName();
-    expectedUnitPrice = getItemPrice();
-    qtyField.setValue(itemQty);
+  public ItemPage setQty(String qty) {
+    qtyField.setValue(qty);
 
     return this;
   }
@@ -36,31 +27,32 @@ public class ItemPage extends BasePage {
     return this;
   }
 
-  public ItemPage setProcessor(int index) {
-    processorsBox.get(index).click();
-    if (index == 1) {
-      expectedUnitPrice = String.valueOf(Double.parseDouble(expectedUnitPrice) + 15.0);
-    } else if (index == 2) {
-      expectedUnitPrice = String.valueOf(Double.parseDouble(expectedUnitPrice) + 100.0);
-    }
+  public ItemPage selectProcessor(String processor) {
+    attributeOptions("Processor")
+        .findBy(text(processor))
+        .$("input")
+        .click();
 
     return this;
   }
 
-  public ItemPage checkNotificationBar() {
-    notificationBar.shouldBe(visible);
+  private ElementsCollection attributeOptions(String groupTitle) {
+    return attributes.$$("dl dt")
+        .findBy(text(groupTitle))
+        .sibling(0)
+        .$$("li");
+  }
+
+  public ItemPage checkSuccessNotificationBar() {
+    successBar.shouldBe(visible);
 
     return this;
   }
 
-  public ShoppingCartPage clickShoppingCartButton() {
-    shoppingCartButton.click();
+  public ItemPage checkCartQty(String qty) {
+    cartQty.shouldHave(exactText("(" + qty + ")"));
 
-    return new ShoppingCartPage(new ItemData(expectedName, expectedUnitPrice, itemQty));
-  }
-
-  public String getItemName() {
-    return itemName.getText();
+    return this;
   }
 
   public String getItemPrice() {

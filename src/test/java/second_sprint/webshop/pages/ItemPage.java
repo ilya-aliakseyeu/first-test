@@ -27,15 +27,6 @@ public class ItemPage extends BasePage {
     return this;
   }
 
-  public ItemPage selectProcessor(String processor) {
-    attributeOptions("Processor")
-        .findBy(text(processor))
-        .$("input")
-        .click();
-
-    return this;
-  }
-
   private ElementsCollection attributeOptions(String groupTitle) {
     return attributes.$$("dl dt")
         .findBy(text(groupTitle))
@@ -51,6 +42,15 @@ public class ItemPage extends BasePage {
 
   public ItemPage checkCartQty(String qty) {
     cartQty.shouldHave(exactText("(" + qty + ")"));
+
+    return this;
+  }
+
+  public ItemPage selectProcessor(String processor) {
+    attributeOptions("Processor")
+            .findBy(text(processor))
+            .$("input")
+            .click();
 
     return this;
   }

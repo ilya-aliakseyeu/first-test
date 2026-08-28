@@ -25,7 +25,7 @@ public class RegistrationTest extends BaseTest {
   @Description("Создаем нового пользователя через новый интерфейс")
   public void registrationTest() {
     String email = faker.internet().emailAddress();
-    String password = faker.harryPotter().character() + faker.number().numberBetween(5, 10);
+    String password = faker.harryPotter().character() + faker.number().digits(5);
 
     open(WebShopConfig.BASE_URL, WsWelcomePage.class)
         .registerButtonClick()

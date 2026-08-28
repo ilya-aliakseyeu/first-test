@@ -1,16 +1,15 @@
 package second_sprint.webshop.pages;
 
-import com.codeborne.selenide.SelenideElement;
-import io.qameta.allure.Step;
+import com.codeborne.selenide.ElementsCollection;
 
+import static com.codeborne.selenide.Condition.exactText;
 import static com.codeborne.selenide.Selenide.$$;
 
 public class DesktopsPage extends BasePage {
-  private final static SelenideElement cheapComputerTicket = $$("div.product-item").get(0);
+  private final ElementsCollection productLinks = $$("h2.product-title a");
 
-  @Step("Кликнуть на тикет компьютера")
-  public ItemPage clickComputerTicket() {
-    cheapComputerTicket.click();
+  public ItemPage openProduct(String name) {
+    productLinks.findBy(exactText(name)).click();
 
     return new ItemPage();
   }

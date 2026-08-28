@@ -6,7 +6,7 @@ import io.qameta.allure.Step;
 import static com.codeborne.selenide.Selenide.$;
 
 public class WsWelcomePage extends BasePage{
-    private static final SelenideElement loginButton = $(".ico-login");
+    private final SelenideElement loginButton = $(".ico-login");
 
     @Step("Нажать на кнопку 'LogIn'")
     public LoginPage loginButtonClick() {

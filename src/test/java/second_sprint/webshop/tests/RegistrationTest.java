@@ -1,7 +1,7 @@
 package second_sprint.webshop.tests;
 
 import io.qameta.allure.*;
-=import net.datafaker.Faker;
+import net.datafaker.Faker;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
@@ -12,7 +12,7 @@ import static io.qameta.allure.SeverityLevel.CRITICAL;
 
 @Epic("Authorization")
 @Feature("Регистрация")
-public class RegistrationTest extends BaseTest {
+public class RegistrationTest {
   private static final Faker faker = new Faker();
 
   @Test

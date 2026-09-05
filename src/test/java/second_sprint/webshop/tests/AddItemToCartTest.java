@@ -1,6 +1,5 @@
 package second_sprint.webshop.tests;
 
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import second_sprint.webshop.pages.ItemPage;
 import second_sprint.webshop.pages.ShoppingCartPage;
@@ -12,16 +11,12 @@ import java.util.Locale;
 import static com.codeborne.selenide.Selenide.*;
 import static org.junit.jupiter.api.Assertions.assertAll;
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static second_sprint.webshop.tests.WebShopConfig.BASE_URL;
+import static second_sprint.webshop.config.Config.BASE_URL;
 
-public class AddItemToCartTest {
+public class AddItemToCartTest extends TestBase {
+
   AuthStep authStep = new AuthStep();
   private static final String PRODUCT_NAME = "Build your own cheap computer";
-
-  @BeforeEach
-  public void setUp() {
-    authStep.register();
-  }
 
   private float processorSurcharge(String processor) {
     return switch (processor) {
@@ -36,6 +31,7 @@ public class AddItemToCartTest {
   public void addItemToCartTest() {
     String processor = "Fast";
     String qty = "3";
+    authStep.register();
 
     ItemPage itemPage = open(BASE_URL, WsWelcomePage.class)
         .hoverComputersTab()

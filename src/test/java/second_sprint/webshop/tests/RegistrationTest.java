@@ -5,6 +5,7 @@ import net.datafaker.Faker;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
+import second_sprint.webshop.config.Config;
 import second_sprint.webshop.pages.WsWelcomePage;
 
 import static com.codeborne.selenide.Selenide.*;
@@ -12,7 +13,7 @@ import static io.qameta.allure.SeverityLevel.CRITICAL;
 
 @Epic("Authorization")
 @Feature("Регистрация")
-public class RegistrationTest {
+public class RegistrationTest extends TestBase {
   private static final Faker faker = new Faker();
 
   @Test
@@ -27,14 +28,14 @@ public class RegistrationTest {
     String email = faker.internet().emailAddress();
     String password = faker.harryPotter().character() + faker.number().digits(5);
 
-    open(WebShopConfig.BASE_URL, WsWelcomePage.class)
+    open(Config.BASE_URL, WsWelcomePage.class)
         .registerButtonClick()
         .chooseMaleGender()
         .inputFirstName(faker.name().firstName())
         .inputLastName(faker.name().lastName())
         .inputEmail(email)
         .inputPassword(password)
-        .inputConfirmPassword("password")
+        .inputConfirmPassword(password)
         .clickRegisterButton()
         .confirmRegistrationText()
         .emailShown(email);

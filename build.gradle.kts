@@ -19,22 +19,17 @@ dependencies {
     testImplementation("net.datafaker:datafaker:2.7.0")
     testImplementation("io.qameta.allure:allure-junit5:$allureVersion")
     testImplementation("io.qameta.allure:allure-selenide:${allureVersion}")
+    implementation("org.aeonbits.owner:owner:1.0.4")
 }
 
 tasks.test {
     useJUnitPlatform()
+    systemProperty("run", System.getProperty("run"))
+    systemProperty("browser", System.getProperty("browser", "chrome"))
 }
 
 allure {
     report {
         version.set(allureVersion)
-    }
-    adapter {
-        aspectjWeaver.set(true)
-        frameworks {
-            junit5 {
-                adapterVersion.set(allureVersion)
-            }
-        }
     }
 }

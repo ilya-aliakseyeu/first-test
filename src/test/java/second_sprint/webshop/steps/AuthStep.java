@@ -1,7 +1,7 @@
 package second_sprint.webshop.steps;
 
 import net.datafaker.Faker;
-import second_sprint.webshop.tests.WebShopConfig;
+import second_sprint.webshop.config.Config;
 import second_sprint.webshop.pages.RegistrationPage;
 
 import static com.codeborne.selenide.Selenide.open;
@@ -15,7 +15,7 @@ public class AuthStep {
   private final String password = faker.harryPotter().character() + faker.number().digits(5);
 
   public void register() {
-    open(WebShopConfig.REGISTRATION_URL, RegistrationPage.class)
+    open(Config.REGISTRATION_URL, RegistrationPage.class)
         .registration(firstName, lastName, email, password)
         .emailShown(email);
   }

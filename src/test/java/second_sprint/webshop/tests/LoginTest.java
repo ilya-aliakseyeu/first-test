@@ -1,6 +1,8 @@
 package second_sprint.webshop.tests;
 
 import net.datafaker.Faker;
+import org.junit.jupiter.api.Tag;
+import org.junit.jupiter.api.Tags;
 import org.junit.jupiter.api.Test;
 import second_sprint.webshop.config.Config;
 import second_sprint.webshop.pages.LoginPage;
@@ -17,6 +19,7 @@ public class LoginTest extends TestBase {
   String password = faker.harryPotter().character() + faker.number().numberBetween(5, 10);
 
   @Test
+  @Tags({@Tag("UI"), @Tag("positive")})
   public void successLoginTest() {
     open(Config.REGISTRATION_URL, RegistrationPage.class)
             .registration(firstName, lastName, email, password)

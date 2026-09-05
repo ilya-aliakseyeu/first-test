@@ -1,5 +1,7 @@
 package second_sprint.webshop.tests;
 
+import org.junit.jupiter.api.Tag;
+import org.junit.jupiter.api.Tags;
 import org.junit.jupiter.api.Test;
 import second_sprint.webshop.pages.ItemPage;
 import second_sprint.webshop.pages.ShoppingCartPage;
@@ -28,6 +30,7 @@ public class AddItemToCartTest extends TestBase {
   }
 
   @Test
+  @Tags({@Tag("UI"), @Tag("positive")})
   public void addItemToCartTest() {
     String processor = "Fast";
     String qty = "3";

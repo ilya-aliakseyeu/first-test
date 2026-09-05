@@ -18,7 +18,6 @@ public class RegistrationTest extends TestBase {
 
   @Test
   @Owner("ilya-alekseev")
-  @Tag("positive")
   @Severity(CRITICAL)
   @Link("TASK-120")
   @Story("Регистрация нового пользователя")

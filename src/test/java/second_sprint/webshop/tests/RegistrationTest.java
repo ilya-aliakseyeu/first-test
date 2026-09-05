@@ -4,6 +4,7 @@ import io.qameta.allure.*;
 import net.datafaker.Faker;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Tag;
+import org.junit.jupiter.api.Tags;
 import org.junit.jupiter.api.Test;
 import second_sprint.webshop.config.Config;
 import second_sprint.webshop.pages.WsWelcomePage;
@@ -23,6 +24,7 @@ public class RegistrationTest extends TestBase {
   @Story("Регистрация нового пользователя")
   @DisplayName("Успешная регистрация нового пользователя")
   @Description("Создаем нового пользователя через новый интерфейс")
+  @Tags({@Tag("UI"), @Tag("negative")})
   public void registrationTest() {
     String email = faker.internet().emailAddress();
     String password = faker.harryPotter().character() + faker.number().digits(5);

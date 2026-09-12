@@ -1,4 +1,4 @@
-package tests;
+package first_sprint.tests;
 
 public class Config {
   public static final String YANDEX_URL = "https://ya.ru/";

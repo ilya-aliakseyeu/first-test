@@ -7,7 +7,7 @@ import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import second_sprint.webshop.config.WebDriverConfig;
-import webshop.util.AttachManager;
+import second_sprint.webshop.util.AttachManager;
 
 
 import static com.codeborne.selenide.Selenide.clearBrowserCookies;

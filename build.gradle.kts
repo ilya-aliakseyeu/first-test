@@ -19,7 +19,9 @@ dependencies {
     testImplementation("net.datafaker:datafaker:2.7.0")
     testImplementation("io.qameta.allure:allure-junit5:$allureVersion")
     testImplementation("io.qameta.allure:allure-selenide:$allureVersion")
+    testImplementation("io.qameta.allure:allure-rest-assured:${allureVersion}")
     implementation("org.aeonbits.owner:owner:1.0.4")
+    testImplementation("io.rest-assured:rest-assured:6.0.0")
 }
 
 val testSourceSet = sourceSets.test.get()

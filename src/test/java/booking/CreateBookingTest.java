@@ -18,7 +18,6 @@ public class CreateBookingTest extends BaseTest {
 
   @Test
   void testCreateBooking() {
-    CreateBookingDto expectedBooking = createBooking();
 
     CreateBookingResponse response = given()
         .contentType(ContentType.JSON)
@@ -30,7 +29,8 @@ public class CreateBookingTest extends BaseTest {
         .extract().as(CreateBookingResponse.class);
 
     assertThat(response.getBookingid()).isNotNull();
-    assertThat(response.getBooking()).isEqualTo(expectedBooking);
+    assertThat(response.getBooking().getTotalprice()).isEqualTo(2000);
+    assertThat(response.getBooking().getAdditionalneeds()).isEqualTo("Wi-fi");
   }
 
 

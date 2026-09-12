@@ -3,6 +3,7 @@ val allureVersion = "2.32.0"
 plugins {
     id("java")
     id("io.qameta.allure") version "3.0.1"
+    id("io.freefair.lombok") version "9.5.0"
 }
 
 group = "org.example"
@@ -20,8 +21,12 @@ dependencies {
     testImplementation("io.qameta.allure:allure-junit5:$allureVersion")
     testImplementation("io.qameta.allure:allure-selenide:$allureVersion")
     testImplementation("io.qameta.allure:allure-rest-assured:${allureVersion}")
+    testImplementation("io.qameta.allure:allure-assertj:${allureVersion}")
     implementation("org.aeonbits.owner:owner:1.0.4")
     testImplementation("io.rest-assured:rest-assured:6.0.0")
+    testImplementation("tools.jackson.core:jackson-databind:3.2.2")
+    testImplementation("org.assertj:assertj-core:3.27.7")
+
 }
 
 val testSourceSet = sourceSets.test.get()

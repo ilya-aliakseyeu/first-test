@@ -1,7 +1,17 @@
 package booking.config;
 
-public class BookingConfig {
+import org.aeonbits.owner.Config;
 
-  public static final String BOOKING_URL = "https://restful-booker.herokuapp.com";
+
+@Config.LoadPolicy(Config.LoadType.MERGE)
+@Config.Sources({
+    "system:properties",
+    "classpath:config/booking.properties",
+})
+public interface BookingConfig extends Config {
+
+  String bookingUserName();
+  String bookingPassword();
+  String bookingUrl();
 
 }

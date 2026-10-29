@@ -1,7 +1,6 @@
-package org.wikipedia.pages;
+package first_sprint.pages;
 
 import com.codeborne.selenide.SelenideElement;
-import ru.bulgakov.pages.BasePage;
 
 import static com.codeborne.selenide.Condition.text;
 import static com.codeborne.selenide.Selenide.*;

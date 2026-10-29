@@ -1,4 +1,4 @@
-package webshop.util;
+package second_sprint.webshop.util;
 
 import com.codeborne.selenide.Selenide;
 import com.codeborne.selenide.WebDriverRunner;

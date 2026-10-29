@@ -1,4 +1,4 @@
-package tests;
+package first_sprint.tests;
 
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Tags;
